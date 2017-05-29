@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+     <style>
+    .highlighted { background: yellow }
+    .dropdown.dropdown-scroll .dropdown-menu {
+    max-height: 250px;
+    width: 80px;
+    overflow: auto;
+}
+.search-control {
+    padding: 5px 10px;
+}
+    </style>
+</head>
+    <body>
+        
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="background-color:#3774a1">
+    <div class="navbar-header">
+      <a class="navbar-brand"  style="color:white">SearchApp</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown dropdown-scroll" ng-app="app">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" style="margin:6px">Go-to Projects <span class="caret"></span>
+     </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" ng-controller="ListCtrl">
+        <li role="presentation">
+            <div class="input-group input-group-sm search-control"> <span class="input-group-addon" style="background-color:#3774a1;color:#fff;">
+                    <span class="glyphicon glyphicon-search"></span></span>
+                <input type="text" class="form-control" placeholder="enter text" ng-model="query">
+            </div>
+        </li>
+        
+        <table>
+            
+            <th style="background-color:#3774a1;color:white"><img src="http://i.stack.imgur.com/8KA9j.jpg?s=32&g=1">SYSTEMS</th>
+            <tr ng-repeat="subgroup1 in systems| filter:query"
+                ng-bind-html="subgroup1.name | highlight:query">
+              <li><td role="presentation"><a href="#">{{subgroup1.name}}</a></td></li>  
+            </tr>
+        
+             <tr>
+            <th style="background-color:#3774a1;color:white"><img src="http://www.zerohedge.com/sites/default/files/pictures/picture-5781.jpg">USER AGENTS</th>
+            <tr ng-repeat="subgroup2 in useragents| filter:query"
+                  ng-bind-html="subgroup2.name | highlight:query">
+                
+               <li><td role="presentation"><a href="#">{{subgroup2.name}}</a></td></li> 
+            </tr>
+            
+        </table>
+        
+    </ul>
+        </li>
+      </ul>
+    </div>
+</nav>
+</body>
+</html>
